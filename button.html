@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect Options</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f3f4f6; 
+            color: #333; 
+        }
+        .form-container { 
+            max-width: 400px; 
+            margin: 50px auto; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+            text-align: center;
+        }
+        .header-image { 
+            text-align: center; 
+            margin-bottom: 20px; 
+        }
+        .header-image img { 
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 10px; 
+        }
+        h1 { 
+            color: #28a745; 
+            font-size: 24px; 
+            margin-bottom: 20px; 
+        }
+        button { 
+            width: 100%; 
+            padding: 12px; 
+            margin: 10px 0; 
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: background-color 0.3s ease; 
+        }
+        button:hover { 
+            background-color: #0056b3; 
+        }
+        @media (max-width: 480px) {
+            .form-container { 
+                padding: 15px; 
+                margin: 20px; 
+            }
+            h1 { 
+                font-size: 20px; 
+            }
+            button { 
+                font-size: 14px; 
+                padding: 10px; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="header-image">
+            <img src="logo.jpg" alt="Header Image">
+        </div>
+        <h1>Select an Option</h1>
+        <button onclick="redirectTo('netbanking')">Netbanking</button>
+        <button onclick="redirectTo('debit-card')">Debit & Credit Card</button>
+    </div>
+
+    <script>
+        function redirectTo(option) {
+            if (option === 'netbanking') {
+                // Replace with your Netbanking redirect URL
+                window.location.href = 'netb.html';
+            } else if (option === 'debit-card') {
+                // Replace with your Debit & Credit Card redirect URL
+                window.location.href = 'cards.html';
+            }
+        }
+    </script>
+</body>
+</html>

